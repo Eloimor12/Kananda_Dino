@@ -41,7 +41,7 @@ class Game:
         self.score = 0
         while self.playing:
             self.events() #abaixar , pular ..
-            self.uptade() # novos
+            self.update() # novos
             self.draw() 
 
     def events(self):
@@ -50,15 +50,15 @@ class Game:
                 self.playing = False
                 self.running = False
 
-    def uptade(self):
+    def update(self):
         user_input = pygame.key.get_pressed()
-        self.player.uptade(user_input)
-        self.obstacle_manager.uptade(self)
-        self.uptade_score()
-        self.power_up_manager.uptade()
-        self.power_up_manager.uptade(self.score, self.game_speed, self.player)
+        self.player.update(user_input)
+        self.obstacle_manager.update(self)
+        self.update()
+        self.power_up_manager.update()
+        self.power_up_manager.update(self.score, self.game_speed, self.player)
 
-    def upatade_score(self):
+    def update_score(self):
         self.score += 1 
         if self.score %100 == 0:
             self.game_speed += 5 # mais rápdo a cada 100 pontos
@@ -72,7 +72,7 @@ class Game:
         self.draw_score()
         self.draw_power_up_time()
         self.power_up_manager.draw(self.screen)
-        pygame.display.uptade()
+        pygame.display.update()
         pygame.display.flip()
 
     def draw_background(self):
