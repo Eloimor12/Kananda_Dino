@@ -1,16 +1,17 @@
 import pygame
-
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
-from dino_runner.components.dinossaur import Dinossaur
-from dino_runner.components.obstacles import Obstacle_Manager
-from dino_runner.components.powerups.power_up_manager import PowerManager
+from dino_runner.components.dinosaur import Dinosaur
+from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+from dino_runner.utils.text_utils import draw_message_component
+from dino_runner.components.powerups.power_up_manager import PowerUpManager
+
 
 class Game:
     def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
-        self.screem = pygame.display.set_mode((SCREEN_HEIGHT,SCREEN_WIDTH))
+        self.screen = pygame.display.set_mode((SCREEN_HEIGHT,SCREEN_WIDTH))
         self.clock = pygame.time.Clock()
         self.playing = False
         self.running = False
@@ -19,9 +20,9 @@ class Game:
         self.game_speed = 20
         self.x_pos_bg = 0
         self.y_pos_bg = 300
-        self.player = Dinossaur()
-        self.obstacle_manager = Obstacle_Manager()
-        self.power_up_manager = PowerManager()
+        self.player = Dinosaur()
+        self.obstacle_manager = ObstacleManager()
+        self.power_up_manager = PowerUpManager()
 
     def execute(self):
         self.running = True #primeiro corre
@@ -64,29 +65,29 @@ class Game:
 
     def draw(self):
         self.clock.tick(FPS)
-        self.screem.fill((255, 255, 255)) #representa o branco 
+        self.screen.fill((255, 255, 255)) #representa o branco 
         self.draw_background()
-        self.player.draw(self.screem)
-        self.obstacle_manager.draw(self.screem)
+        self.player.draw(self.screen)
+        self.obstacle_manager.draw(self.screen)
         self.draw_score()
         self.draw_power_up_time()
-        self.power_up_manager.draw(self.screem)
+        self.power_up_manager.draw(self.screen)
         pygame.display.uptade()
         pygame.display.flip()
 
     def draw_background(self):
         image_width = BG.get_width()
-        self.screem.blit(BG, (self.x_pos_bg, self.y_pos_bg))
-        self.screem.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+        self.screen.blit(BG, (self.x_pos_bg, self.y_pos_bg))
+        self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
         if self.x_pos_bg <= image_width:
-            self.screem.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
+            self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
             self.x_pos_bg -= self.game_speed
 
     def draw_score(self):
         draw_message_component( # desenhando a pontuação, números atualizando 
             f"Score: {self.score}", 
-            self.screem,
+            self.screen,
             pos_x_center = 1000,
             pos_y_center = 50
         )
@@ -97,7 +98,7 @@ class Game:
             if time_to_show >= 0:
                 draw_message_component(
                     f"{self.player.type.capitalize()} dispinível por {time_to_show} segundos",
-                    self.screem, 
+                    self.screen, 
                     font_size = 18, 
                     pos_x_center = 500, #posição da mensagem 
                     pos_y_center = 40 
@@ -115,27 +116,27 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.run()
 
-    def show_manu(self):
-            self.screem.fill((255, 255, 255))
-            half_screem_height == SCREEN_HEIGHT // 2
-            half_screem_width == SCREEN_WIDTH // 2
+    def show_menu(self):
+            self.screen.fill((255, 255, 255))
+            half_screen_height == SCREEN_HEIGHT // 2
+            half_screen_width == SCREEN_WIDTH // 2
             if self.death_count == 0:
-                draw_message_component("Pressione qualaquer tecla para iniciar", self.screem)
+                draw_message_component("Pressione qualaquer tecla para iniciar", self.screen)
             else:
-                draw_message_component("Pressione qualquer tecla para reinicar", self.screem, pos_y_center = half_screem_height + 140)
+                draw_message_component("Pressione qualquer tecla para reinicar", self.screen, pos_y_center = half_screen_height + 140)
                 draw_message_component(
                     f"Sua pontuação: {self.score}",
-                    self.screem, 
-                    pos_y_center = half_screem_height - 50
+                    self.screen, 
+                    pos_y_center = half_screen_height - 50
                 )
 
                 draw_message_component(
                     f"Contagem de vidas: {self.death_count}",
-                    self.screem,
-                    pos_y_center = half_screem_height - 100
+                    self.screen,
+                    pos_y_center = half_screen_height - 100
                 )
 
-                self.screem.blit(ICON, (half_screem_width - 40, half_screem_hight - 30))
+                self.screen.blit(ICON, (half_screen_width - 40, half_screen_hight - 30))
             
             pygame.display.flip()
             self.handle_events_on_menu
