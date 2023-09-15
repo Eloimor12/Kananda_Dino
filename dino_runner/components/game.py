@@ -116,27 +116,24 @@ class Game:
             elif event.type == pygame.KEYDOWN:
                 self.run()
 
-    def show_menu(self):
-            self.screen.fill((255, 255, 255))
-            half_screen_height == SCREEN_HEIGHT // 2
-            half_screen_width == SCREEN_WIDTH // 2
-            if self.death_count == 0:
-                draw_message_component("Pressione qualaquer tecla para iniciar", self.screen)
-            else:
-                draw_message_component("Pressione qualquer tecla para reinicar", self.screen, pos_y_center = half_screen_height + 140)
-                draw_message_component(
-                    f"Sua pontuação: {self.score}",
-                    self.screen, 
-                    pos_y_center = half_screen_height - 50
-                )
-
-                draw_message_component(
-                    f"Contagem de vidas: {self.death_count}",
-                    self.screen,
-                    pos_y_center = half_screen_height - 100
-                )
-
-                self.screen.blit(ICON, (half_screen_width - 40, half_screen_hight - 30))
-            
-            pygame.display.flip()
-            self.handle_events_on_menu
+def show_menu(self):
+        self.screen.fill((255, 255, 255))
+        half_screen_heigth = SCREEN_HEIGHT // 2
+        half_screen_width = SCREEN_WIDTH // 2
+        if self.death_count == 0:
+            draw_message_component("Pressione qualquer tecla para iniciar", self.screen)
+        else:
+            draw_message_component("Pressione qualquer tecla para reiniciar", self.screen, pos_y_center = half_screen_heigth + 140)
+            draw_message_component(
+                f"Sua pontuação: {self.score}",
+                self.screen,
+                pos_y_center = half_screen_heigth - 50
+            )
+            draw_message_component(
+                f"Contagem de vidas: {self.death_count}",
+                self.screen,
+                pos_y_center = half_screen_heigth - 100
+            )
+            self.screen.blit(ICON, (half_screen_width - 40, half_screen_heigth - 30))
+        pygame.display.flip()
+        self.handle_events_on_menu()
