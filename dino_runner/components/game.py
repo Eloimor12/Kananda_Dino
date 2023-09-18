@@ -24,8 +24,8 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
-        self.score_sound = SCORE_SOUND
-        self.score_sound.set_volume(0.1) 
+        self.score_sound = SCORE_SOUND # som do score
+        self.score_sound.set_volume(0.5) 
         
     
     def execute(self):
