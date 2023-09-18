@@ -1,4 +1,5 @@
 import pygame 
+import pygame.mixer
 pygame.init()  # iniciar pygame # 
 pygame.mixer.init()
 from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND, BACKGROUND_SOUND
@@ -26,15 +27,15 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.score_sound = SCORE_SOUND # som do score
         self.score_sound.set_volume(0.5) 
-        self.background_sound = BACKGROUND_SOUND
+        self.background_sound = BACKGROUND_SOUND # som da tela de fundo
         
-    
+        
     def execute(self):
         self.running = True
         while self.running:
             if not self.playing:
                 self.show_menu()
-       
+
         pygame.display.quit()
         pygame.quit()
     
@@ -44,7 +45,7 @@ class Game:
         self.power_up_manager.reset_power_up()
         self.game_speed = 20
         self.score = 0
-        self.background_sound.play()
+        self.background_sound.play(1)
 
         while self.playing:
             self.events()
@@ -146,8 +147,9 @@ class Game:
                 f"Sua pontuaçao: {self.score}",
                 self.screen,
                 pos_y_center = half_screen_height - 50
+                
             )
-
+            self.background_sound.stop()
 
             draw_message_component(
                 f"Contagem de vidas: {self.death_count} ",
@@ -158,4 +160,5 @@ class Game:
             self.screen.blit(ICON, (hals_screen_width - 40, half_screen_height - 30))
 
         pygame.display.flip()
+        
         self.handle_events_on_menu()
