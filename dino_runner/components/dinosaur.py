@@ -74,13 +74,13 @@ class Dinosaur(Sprite):
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
             if not self.jump_sound_is_playing:
-                self.jump_sound.play() # quando ele ta no ar e true,e nao vai tocar varias vezes
+                self.jump_sound.play() 
                 self.jump_sound_is_playing = True
         if self.jump_vel < -JUMP_VEL:
             self.dino_rect.y = Y_POS
             self.dino_jump = False
             self.jump_vel = JUMP_VEL
-            self.jump_sound_is_playing = False #quando ele ta no chao e ele ta false
+            self.jump_sound_is_playing = False
 
         if self.jump_vel < -JUMP_VEL:
             self.dino_rect.y = Y_POS
