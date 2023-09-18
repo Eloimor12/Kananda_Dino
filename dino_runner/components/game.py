@@ -1,7 +1,7 @@
 import pygame 
 pygame.init()  # iniciar pygame # 
 pygame.mixer.init()
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND, BACKGROUND_SOUND
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.utils.text_utils import draw_message_component
@@ -26,6 +26,7 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.score_sound = SCORE_SOUND # som do score
         self.score_sound.set_volume(0.5) 
+        self.background_sound = BACKGROUND_SOUND
         
     
     def execute(self):
@@ -43,6 +44,7 @@ class Game:
         self.power_up_manager.reset_power_up()
         self.game_speed = 20
         self.score = 0
+        self.background_sound.play()
 
         while self.playing:
             self.events()
@@ -78,7 +80,7 @@ class Game:
 
     def draw(self): # tela do jogo
         self.clock.tick(FPS)  
-        self.screen.fill((255, 255, 255))
+        self.screen.fill((173, 234, 234))
         self.draw_blackground()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
@@ -154,6 +156,6 @@ class Game:
             )
 
             self.screen.blit(ICON, (hals_screen_width - 40, half_screen_height - 30))
-            
+
         pygame.display.flip()
         self.handle_events_on_menu()

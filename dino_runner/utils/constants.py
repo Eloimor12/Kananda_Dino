@@ -91,11 +91,13 @@ JUMP_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '08 - MMX - X Jump.wav')
 SCORE_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '00 - MMX _X Score.wav'))
 DUCK_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '07 - MMX - X Duck.wav'))
 POWER_UP_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '13 - MMX - X Shield.wav'))
+BACKGROUND_SOUND = pygame.mixer.Sound(os.path.join(IMG_DIR, '02 Intro Stage'))
 CLOUD =pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud00.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
-BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
+
+BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/chao3.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
