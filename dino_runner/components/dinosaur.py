@@ -1,7 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
-from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD
+from dino_runner.utils.constants import RUNNING, JUMPING, DUCKING, DEFAULT_TYPE, SHIELD_TYPE, DUCKING_SHIELD, JUMPING_SHIELD, RUNNING_SHIELD, JUMP_SOUND
 
 DUCK_IMG = {DEFAULT_TYPE: DUCKING, SHIELD_TYPE: DUCKING_SHIELD}
 JUMP_IMG = {DEFAULT_TYPE: JUMPING, SHIELD_TYPE: JUMPING_SHIELD}
@@ -27,6 +27,8 @@ class Dinosaur(Sprite):
         self.dino_duck = False
         self.jump_vel = JUMP_VEL
         self.setup_state()
+        self.jump_sound = JUMP_SOUND
+        self.jump_sound_is_playing = False
 
     def setup_state(self):
         self.has_power_up = False
@@ -71,6 +73,14 @@ class Dinosaur(Sprite):
         if self.dino_jump: 
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
+            if not self.jump_sound_is_playing:
+                self.jump_sound.play() # quando ele ta no ar e true,e nao vai tocar varias vezes
+                self.jump_sound_is_playing = True
+        if self.jump_vel < -JUMP_VEL:
+            self.dino_rect.y = Y_POS
+            self.dino_jump = False
+            self.jump_vel = JUMP_VEL
+            self.jump_sound_is_playing = False #quando ele ta no chao e ele ta false
 
         if self.jump_vel < -JUMP_VEL:
             self.dino_rect.y = Y_POS

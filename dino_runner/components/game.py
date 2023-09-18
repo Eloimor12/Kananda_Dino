@@ -1,6 +1,7 @@
 import pygame 
 pygame.init()  # iniciar pygame # 
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+pygame.mixer.init()
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND
 from dino_runner.components.dinosaur import Dinosaur
 from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
 from dino_runner.utils.text_utils import draw_message_component
@@ -23,6 +24,9 @@ class Game:
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
         self.power_up_manager = PowerUpManager()
+        self.score_sound = SCORE_SOUND
+        self.score_sound.set_volume(0.1) 
+        
     
     def execute(self):
         self.running = True
@@ -62,16 +66,16 @@ class Game:
         self.score += 1
         if self.score % 100 == 0:
             self.game_speed +=  5
+            self.score_sound.play()
            
     def draw_record(self):
         draw_message_component(
         f"Recorde: {self.record}",
         self.screen,
         pos_x_center=1000,
-        pos_y_center=80  # Defina a posição Y desejada para o recorde
+        pos_y_center=80
     )
 
-    
     def draw(self): # tela do jogo
         self.clock.tick(FPS)  
         self.screen.fill((255, 255, 255))

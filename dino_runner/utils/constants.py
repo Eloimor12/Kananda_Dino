@@ -8,6 +8,7 @@ SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
+SOUND_DIR = os.path.join(os.path.dirname(__file__), "..", "assets","Sounds")
 
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "WallpaperMagaman.png"))
@@ -85,7 +86,11 @@ BIRD = [
     pygame.image.load(os.path.join(IMG_DIR, "Bird/Bird01.png")),
 ]
 
-CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
+DEATH_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '11 - MMX - X Die.wav'))
+JUMP_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '08 - MMX - X Jump.wav'))
+SCORE_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '00 - MMX _X Score.wav'))
+POWER_UP_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '13 - MMX - X Shield.wav'))
+CLOUD =pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud00.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 
