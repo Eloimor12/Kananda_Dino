@@ -13,7 +13,7 @@ class PowerUpManager():
     def generate_power_up(self, score):
         if len(self.power_ups) == 0 and self.when_appars == score:
             self.when_appars += random.randint(200, 300)
-            self.power_ups.append(Shield())
+            self.power_ups.append(Shield()) #reveza
 
     def update(self, score, game_speed, player):
         self.generate_power_up(score)

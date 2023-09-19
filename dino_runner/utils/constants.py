@@ -1,7 +1,7 @@
 import pygame
 import os
 
-TITLE = "Megaman" # Global Constants
+TITLE = "Megaman X" # Global Constants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
@@ -21,7 +21,6 @@ RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run07.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run08.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run09.png")),
-
 ]
 
 RUNNING_SHIELD = [
@@ -34,8 +33,7 @@ RUNNING_SHIELD = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/RunShield06.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/RunShield07.png")),
     pygame.image.load(os.path.join(IMG_DIR, "Dino/RunShield08.png")),
-    pygame.image.load(os.path.join(IMG_DIR, "Dino/RunShield09.png")),
-    
+    pygame.image.load(os.path.join(IMG_DIR, "Dino/RunShield09.png")),   
 ]
 
 RUNNING_HAMMER = [

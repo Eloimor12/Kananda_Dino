@@ -83,7 +83,7 @@ class Dinosaur(Sprite):
             self.jump_vel = JUMP_VEL
             self.jump_sound_is_playing = False
 
-        if self.jump_vel < -JUMP_VEL:
+        if self.jump_vel < -JUMP_VEL: #velocidade do pulo
             self.dino_rect.y = Y_POS
             self.dino_jump = False
             self.jump_vel = JUMP_VEL     
@@ -96,7 +96,7 @@ class Dinosaur(Sprite):
         self.step_index += 1
         self.dino_duck = False
         self.duck_sound.play() 
-        self.duck_sound_is_playing = True
+        self.duck_sound_is_playing = True 
         
     def draw(self, screen):
         screen.blit(self.image, (self.dino_rect.x, self.dino_rect.y))

@@ -4,17 +4,18 @@ from dino_runner.components.obstacles.cactus import Cactus
 from dino_runner.components.obstacles.bird import Bird
 from dino_runner.utils.constants import DEATH_SOUND
 
-class ObstacleManager:
+class ObstacleManager: #manager configuração , metodo para qualquer obstaculo
     def __init__(self):
         self.obstacles = []
         self.death_sound = DEATH_SOUND 
         self.death_sound.set_volume(0.4) 
+        
     def update(self,game):
         obstacle_type = [
             Cactus(),
             Bird(),
         ]
-        
+
         if len(self.obstacles) == 0:
             self.obstacles.append(obstacle_type[random.randint(0,1)])
         for obstacle in self.obstacles:

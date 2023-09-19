@@ -12,11 +12,11 @@ class PowerUp(Sprite):
         self.start_time = 0 
         self.duration = random.randint(5, 10)
 
-    def update(self, game_speed, power_ups): #fazer update 
+    def update(self, game_speed, power_ups): #fazer atualiações
         self.rect.x -= game_speed
        
         if self.rect.x < -self.rect.right:
-            power_ups.pop() 
+            power_ups.pop() #retirar
 
     def draw(self, screen):
         screen.blit(self.image, self.rect)
