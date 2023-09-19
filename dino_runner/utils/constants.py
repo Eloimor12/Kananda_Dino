@@ -1,17 +1,14 @@
 import pygame
-from pygame.transform import scale
 import os
 
-# Global Constants
-TITLE = "Megaman"
+TITLE = "Megaman" # Global Constants
 SCREEN_HEIGHT = 600
 SCREEN_WIDTH = 1100
 FPS = 30
 IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 SOUND_DIR = os.path.join(os.path.dirname(__file__), "..", "assets","Sounds")
 
-# Assets Constants
-ICON = pygame.image.load(os.path.join(IMG_DIR, "WallpaperMagaman.png"))
+ICON = pygame.image.load(os.path.join(IMG_DIR, "WallpaperMagaman.png")) # Assets Constants
 
 RUNNING = [
     pygame.image.load(os.path.join(IMG_DIR, "Dino/Run00.png")),
@@ -93,10 +90,9 @@ DUCK_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '07 - MMX - X Duck.wav')
 POWER_UP_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '13 - MMX - X Shield.wav'))
 BACKGROUND_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '02 Intro Stage.mp3'))
 
-CLOUD =pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud00.png'))
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
-
+CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/chao3.png'))
 

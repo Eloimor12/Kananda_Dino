@@ -14,7 +14,7 @@ class ObstacleManager:
             Cactus(),
             Bird(),
         ]
-
+        
         if len(self.obstacles) == 0:
             self.obstacles.append(obstacle_type[random.randint(0,1)])
         for obstacle in self.obstacles:
