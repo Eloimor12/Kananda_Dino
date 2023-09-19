@@ -93,7 +93,7 @@ BACKGROUND_SOUND = pygame.mixer.Sound(os.path.join(SOUND_DIR, '02 Intro Stage.mp
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 CLOUD = pygame.image.load(os.path.join(IMG_DIR, 'Other/Cloud.png'))
-
+GAME_OVER = pygame.image.load(os.path.join(IMG_DIR, 'Other/GameOver.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/chao3.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))

@@ -2,11 +2,11 @@ import pygame
 import pygame.mixer
 pygame.init()  # iniciar pygame # 
 pygame.mixer.init()
-from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND, BACKGROUND_SOUND, CLOUD
+from dino_runner.utils.constants import BG, ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE, SCORE_SOUND, BACKGROUND_SOUND, CLOUD, GAME_OVER
 from dino_runner.components.dinosaur import Dinosaur
-from dino_runner.components.obstacles.obstacle_manager import ObstacleManager
+from dino_runner.components.obstacles.obstacle_manager import ObstacleManager #importando todos os obtaculos
 from dino_runner.utils.text_utils import draw_message_component
-from dino_runner.components.powerups.power_up_manager import PowerUpManager
+from dino_runner.components.powerups.power_up_manager import PowerUpManager #impotando o poder
 
 class Game:
     def __init__(self): # costrutor
@@ -17,9 +17,8 @@ class Game:
         self.playing = False
         self.running = False
         self.score = 0
-        self.record = 0
-        self.death_count = 0 
-        self.game_speed = 20
+        self.death_count = 0  #contagem de vidas
+        self.game_speed = 20 #velocidade
         self.x_pos_bg = 0
         self.y_pos_bg = 380
         self.x_pos_cloud = 0 
@@ -31,7 +30,7 @@ class Game:
         self.score_sound.set_volume(0.5) 
         self.background_sound = BACKGROUND_SOUND # som da tela de fundo
           
-    def execute(self):
+    def execute(self): #jogador correr, o jogo continua rodando, se não, ele reseta
         self.running = True
         while self.running:
             if not self.playing:
@@ -42,9 +41,9 @@ class Game:
     
     def run(self):
         self.playing = True
-        self.obstacle_manager.reset_obstacles()
-        self.power_up_manager.reset_power_up()
-        self.game_speed = 20
+        self.obstacle_manager.reset_obstacles() #reset dos obstaculos
+        self.power_up_manager.reset_power_up() #reset dos power ups
+        self.game_speed = 20 
         self.score = 0
         self.background_sound.play(1)
 
@@ -78,6 +77,7 @@ class Game:
         self.draw_blackground()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
+        self.draw_cloud()
         self.draw_score()
         self.draw_power_up_time()
         self.power_up_manager.draw(self.screen)
@@ -91,11 +91,11 @@ class Game:
         if self.x_pos_bg <= - image_width:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
-            self.x_pos_bg -= self.game_speed
+        self.x_pos_bg -= self.game_speed
 
     def draw_score(self):
         draw_message_component(
-            f"score:{self.score}",
+            f"Score: {self.score}",
             self.screen,
             pos_x_center = 1000,
             pos_y_center = 50
@@ -108,7 +108,7 @@ class Game:
                 draw_message_component(
                     f"{self.player.type.capitalize()} disponível por  {time_to_Show} segundos",
                     self.screen,
-                    font_size = 18,
+                    font_size = 20,
                     pos_x_center = 500,
                     pos_y_center = 40
                 )
@@ -155,5 +155,6 @@ class Game:
             )
             self.screen.blit(ICON, (hals_screen_width - 40, half_screen_height - 30))
 
+            self.screen.blit(GAME_OVER, (hals_screen_width - 200, half_screen_height - 190))
         pygame.display.flip()
         self.handle_events_on_menu()
