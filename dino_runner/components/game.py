@@ -72,7 +72,7 @@ class Game:
         if self.score % 100 == 0:
             self.game_speed +=  5
             self.score_sound.play() #play som score
-        if self.score >= self.record:
+        if self.score >= self.record: #adicionei score
             self.record = self.score
 
     def draw(self): # tela do jogo , com tudo que vai aparecer na tela
