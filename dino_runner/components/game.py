@@ -22,7 +22,7 @@ class Game:
         self.game_speed = 20 #velocidade
         self.x_pos_bg = 0
         self.y_pos_bg = 380
-        self.x_pos_cloud = 0 #posição 
+        self.x_pos_cloud = 0 #posição nuvem 
         self.y_pos_cloud = 30  
         self.player = Dinosaur()
         self.obstacle_manager = ObstacleManager()
