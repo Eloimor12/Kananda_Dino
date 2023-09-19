@@ -164,7 +164,7 @@ class Game:
                 pos_y_center = half_screen_height - 100
             )
             draw_message_component(
-                f"Record: {self.score} ",
+                f"Record: {self.record} ",
                 self.screen,
                 pos_y_center = half_screen_height + 100
             )
